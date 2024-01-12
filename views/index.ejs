@@ -12,38 +12,28 @@
             <h1>Mess Bill Tracker</h1>
             <p>date: <%= date %></p>
             <p>month: <%= currentMonth %></p>
-            <table id="editableTable">
-                <thead>
+            <p>Pending Amount: <%= unpaidBills %></p>
+            <table>
+              <thead>
+                <tr>
+                  <th>MONTH</th>
+                  <th>BILL</th>
+                  <th>STATUS</th>
+                  <th>PENDING</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% for (let i = 0; i < eachMonth.length; i++) { %>
                   <tr>
-                    <th>MONTH</th>
-                    <th>BILL</th>
-                    <th>STATUS</th>
-                    <th>PENDING</th>
+                    <td><%= eachMonth[i] %></td>
+                    <td><%= eachBill[i] %></td>
+                    <td><%= eachStatus[i] %></td>
+                    <td><%= eachPending[i] %></td>
                   </tr>
-                 </thead>
-                 <tbody>
-                   <tr>
-                     <td>JAN</td>
-                     <td>text1.2</td>
-                     <td>text1.3</td>
-                     <td>yes</td>
-                   </tr>
-                   <tr>
-                     <td>FEB</td>
-                     <td>text2.2</td>
-                     <td>text2.3</td>
-                     <td>yes</td>
-                   </tr>
-                   <tr>
-                     <td>MARCH</td>
-                     <td>text3.2</td>
-                     <td>text3.3</td>
-                     <td>yes</td>
-                   </tr>
-                   <tr>
-                   </tr>
-                </tbody>
-              </table>
+                <% } %>
+              </tbody>
+            </table>
+            
         </div>
     </div>
 </body>
