@@ -2,39 +2,45 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="UTF-8">
     <title>Mess Bill Tracker</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
-        <div>            
+        <div>
+          <div class="nav">
             <h1>Mess Bill Tracker</h1>
-            <p>date: <%= date %></p>
-            <p>month: <%= currentMonth %></p>
-            <p>Pending Amount: <%= unpaidBills %></p>
-            <table>
-              <thead>
-                <tr>
-                  <th>MONTH</th>
-                  <th>BILL</th>
-                  <th>STATUS</th>
-                  <th>PENDING</th>
-                </tr>
-              </thead>
-              <tbody>
-                <% for (let i = 0; i < eachMonth.length; i++) { %>
-                  <tr>
-                    <td><%= eachMonth[i] %></td>
-                    <td><%= eachBill[i] %></td>
-                    <td><%= eachStatus[i] %></td>
-                    <td><%= eachPending[i] %></td>
-                  </tr>
-                <% } %>
-              </tbody>
-            </table>
+            <p>DATE: <%= date %></p>
+            <p>MONTH: <%= currentMonth.toUpperCase() %></p>
+            <p>PENDING AMOUNT: <%= unpaidBills %></p>
+          </div>            
+            
+          <form id="filterForm" class="form-container">
+            <div class="form-row">
+                <label for="monthFilter">Filter by Month:</label>
+                <input type="text" id="monthFilter" name="monthFilter" oninput="filterMonths()">
+                
+                <label for="unpaidFilter">Show Unpaid Bills:</label>
+                <input type="checkbox" id="unpaidFilter" name="unpaidFilter" onchange="filterMonths()">
+            </div>
+        </form>
+          
+          <div class="data-container" id="dataContainer">
+            <% for (let i = 0; i < eachMonth.length; i++) { %>
+              <div class="data-box" data-month="<%= eachMonth[i] %>" data-status="<%= eachStatus[i] %>">
+                <h4 class="allMonths"><%= eachMonth[i] %></h4> <hr>
+                <p><strong>BILL:</strong> <%= eachBill[i] %></p>
+                <p><strong>STATUS:</strong> <%= eachStatus[i] %></p>
+                <p><strong>PENDING:</strong> <%= eachPending[i] %></p>
+              </div>
+            <% } %>
+          </div>
             
         </div>
     </div>
+    <script src="script.js"></script>
+    
 </body>
 </html>

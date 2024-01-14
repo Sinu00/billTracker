@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const pg = require("pg");
+require('dotenv').config();
 
 const app = express();
 
@@ -8,7 +9,7 @@ const db = new pg.Client({
   user: "postgres",
   host: "localhost",
   database: "world",
-  password: "202222",
+  password: process.env.DATABASE_PASSWORD,
   port: 5432,
 });
 db.connect();
@@ -70,6 +71,11 @@ app.get("/", async (req, res) => {
     res.status(500).send("Internal Server Error");
   }
 });
+
+app.post("/filter", async (req, res) => {
+  
+  res.redirect("/");
+})
 
 app.listen(3000, () => {
   console.log("Server running on port 3000");
